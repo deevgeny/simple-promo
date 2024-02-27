@@ -1,5 +1,6 @@
 import pytest
 from django.core.exceptions import ValidationError
+from django.core.validators import MaxLengthValidator
 
 from data.models import WebSite
 
@@ -96,6 +97,22 @@ def test_address_field(field_attr, value):
         f'WebSite.{field} field should be defined as '
         f'{field_attr}={repr(value)}'
     )
+
+
+def test_phone_field_validators():
+    field = 'phone'
+    count = 2
+    validators = ['phone_validator']
+    assert len(WebSite._meta.get_field(field).validators) == count, (
+        f'WebSite.{field} should have {count} validators'
+    )
+    assert (
+        WebSite._meta.get_field(field).validators[0].__name__ in validators
+    ), (
+         '`phone_is_digit` validator is missing'
+    )
+    assert isinstance(WebSite._meta.get_field(field).validators[1],
+                   MaxLengthValidator), 'MaxLengthValidator is missing'
 
 
 def test_model_clean_fields_method(web_site):

@@ -90,7 +90,7 @@ def test_phone_field(field_attr, value):
     )
 
 
-def test_phone_fields_validators():
+def test_phone_field_validators():
     field = 'phone'
     count = 2
     validators = ['phone_validator']
