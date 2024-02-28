@@ -1,6 +1,7 @@
 import pytest
 
 pytest_plugins = [
-    'tests.fixtures.users',
-    'tests.fixtures.data'
+    'tests.fixtures.users_app',
+    'tests.fixtures.data_app',
+    'tests.fixtures.api_app'
 ]
