@@ -1,3 +1,7 @@
-# from django.urls import include, path
+from django.urls import path
 
-urlpatterns = []
+from .website.views import web_site_view
+
+urlpatterns = [
+    path('website', web_site_view),
+]
