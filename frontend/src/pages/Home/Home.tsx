@@ -1,24 +1,27 @@
 import React from 'react';
-import { Box } from '@mui/material';
-import Navbar from '../../components/Navbar';
-import FeaturedImageBlock from '../../components/FeaturedImageBlock';
-import CallToActionBlock from '../../components/CallToActionBlock';
+import { Container } from '@mui/material';
+import Header from '../../components/Header';
+import FeaturedItems from '../../components/FeaturedItems';
 import Footer from '../../components/Footer';
+
 
 function Home() {
   return (
-    <Box
+    <Container
       sx={{
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
+        maxWidth: 'lg',
+        my: 'auto'
       }}
     >
-      <Navbar />
-      <FeaturedImageBlock />
-      <CallToActionBlock />
+      <Header />
+      <main>
+        <FeaturedItems />
+      </main>
       <Footer />
-    </Box>
+    </Container>
   );
 }
 
