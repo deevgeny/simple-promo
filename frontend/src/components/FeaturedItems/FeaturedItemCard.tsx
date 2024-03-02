@@ -7,7 +7,7 @@ import {
   Typography
  } from '@mui/material';
 
-interface FeaturedItemProps {
+interface IFeaturedItemProps {
   post: {
     date: string;
     description: string;
@@ -17,7 +17,7 @@ interface FeaturedItemProps {
   };
 };
 
-function FeaturedItemCard(props: FeaturedItemProps) {
+function FeaturedItemCard(props: IFeaturedItemProps) {
   const { post } = props;
 
   return (
