@@ -6,10 +6,14 @@ import {
   IconButton
  } from '@mui/material';
  import SearchIcon from '@mui/icons-material/Search';
+ import useWebsiteContext from '../../hooks/useWebsiteContext';
 
-const title = 'title';
-
+/**
+ * Appbar with site name and buttons.
+ */
 function Appbar() {
+  const { website } = useWebsiteContext();
+
   return (
     <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <Button size="small">Subscribe</Button>
@@ -21,7 +25,7 @@ function Appbar() {
         noWrap
         sx={{ flex: 1 }}
       >
-        {title}
+        {website?.name || null}
       </Typography>
       <IconButton>
         <SearchIcon />

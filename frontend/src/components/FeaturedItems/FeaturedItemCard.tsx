@@ -8,7 +8,8 @@ import {
  } from '@mui/material';
 
 interface IFeaturedItemProps {
-  post: {
+  item: {
+    id: number,
     date: string;
     description: string;
     image: string;
@@ -18,7 +19,7 @@ interface IFeaturedItemProps {
 };
 
 function FeaturedItemCard(props: IFeaturedItemProps) {
-  const { post } = props;
+  const { item } = props;
 
   return (
     <CardActionArea component='a' href='#'>
@@ -26,18 +27,18 @@ function FeaturedItemCard(props: IFeaturedItemProps) {
         <CardMedia
           component='img'
           //sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
-          image={post.image}
-          alt={post.imageLabel}
+          image={item.image}
+          alt={item.imageLabel}
         />
         <CardContent sx={{ flex: 1 }}>
           <Typography component='h2' variant='h5'>
-            {post.title}
+            {item.title}
           </Typography>
           <Typography variant='subtitle1' color='text.secondary'>
-            {post.date}
+            {item.date}
           </Typography>
           <Typography variant='subtitle1' paragraph>
-            {post.description}
+            {item.description}
           </Typography>
           <Typography variant='subtitle1' color='primary'>
             Continue reading...

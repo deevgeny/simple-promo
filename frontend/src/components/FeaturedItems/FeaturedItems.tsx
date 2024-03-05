@@ -4,6 +4,7 @@ import FeaturedItemCard from './FeaturedItemCard';
 
 const featuredItems = [
   {
+    id: 1,
     title: 'Featured post',
     date: 'Nov 12',
     description:
@@ -12,6 +13,7 @@ const featuredItems = [
     imageLabel: 'Image Text',
   },
   {
+    id: 2,
     title: 'Post title',
     date: 'Nov 11',
     description:
@@ -20,6 +22,7 @@ const featuredItems = [
     imageLabel: 'Image Text',
   },
   {
+    id: 3,
     title: 'Post title',
     date: 'Nov 11',
     description:
@@ -32,9 +35,9 @@ const featuredItems = [
 function FeaturedItems() {
   return (
     <Grid container spacing={4}>
-      {featuredItems.map((post) => (
-        <Grid item xs={12} sm={6} md={4} >
-          <FeaturedItemCard key={post.title} post={post} />
+      {featuredItems.map((item) => (
+        <Grid item xs={12} sm={6} md={4} key={item.id}>
+          <FeaturedItemCard item={item} />
         </Grid>
       ))}
     </Grid>

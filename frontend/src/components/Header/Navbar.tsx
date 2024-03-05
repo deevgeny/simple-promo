@@ -18,6 +18,9 @@ const sections = [
   { title: 'Travel', url: '#' },
 ];
 
+/**
+ * Navigation bar with page links
+ */
 function Navbar() {
 
   return (
