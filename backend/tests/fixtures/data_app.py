@@ -7,7 +7,7 @@ fake = Faker('ru_RU')
 
 
 @pytest.fixture
-def web_site(db):
+def website(db):
     return WebSite.objects.create(
         url=fake.url(),
         name=fake.company()

@@ -6,5 +6,5 @@ from data.models import WebSite
 class WebSiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = WebSite
-        fields = ('id', 'url', 'name', 'slogan', 'email', 'telegram',
+        fields = ('id', 'url', 'name', 'slogan', 'banner', 'email', 'telegram',
                   'phone', 'address')

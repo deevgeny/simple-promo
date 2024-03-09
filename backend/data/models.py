@@ -4,6 +4,11 @@ from django.db import models
 from users.models import phone_validator
 
 
+def banner_path(instance, filename):
+    """Return banner path and filename."""
+    return f'website-images/banner.{filename.split(".")[-1]}'
+
+
 class WebSite(models.Model):
     """Web site data model."""
     url = models.URLField(
@@ -13,12 +18,19 @@ class WebSite(models.Model):
     name = models.CharField(
         verbose_name='name',
         max_length=64,
-        help_text='site name'
+        help_text='site name',
+        blank=True
     )
     slogan = models.CharField(
         verbose_name='slogan',
         max_length=256,
         help_text='site slogan',
+        blank=True
+    )
+    banner = models.ImageField(
+        verbose_name='website banner image',
+        upload_to=banner_path,
+        help_text='website header banner image',
         blank=True
     )
     email = models.EmailField(

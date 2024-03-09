@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Toolbar,
-  Button,
   Typography,
   IconButton
  } from '@mui/material';
@@ -20,7 +19,7 @@ function Appbar() {
   };
 
   return (
-    <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
+    <Toolbar>
       <Typography
         component='h2'
         variant='h5'
