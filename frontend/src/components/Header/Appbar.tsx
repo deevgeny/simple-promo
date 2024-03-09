@@ -5,7 +5,7 @@ import {
   Typography,
   IconButton
  } from '@mui/material';
- import SearchIcon from '@mui/icons-material/Search';
+ import TelegramIcon from '@mui/icons-material/Telegram';
  import useWebsiteContext from '../../hooks/useWebsiteContext';
 
 /**
@@ -14,25 +14,32 @@ import {
 function Appbar() {
   const { website } = useWebsiteContext();
 
+  const handleOnClick = () => {
+    // Replace to navigate() from React Router
+    window.open(website?.telegram, '_blank');
+  };
+
   return (
     <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-      <Button size="small">Subscribe</Button>
       <Typography
-        component="h2"
-        variant="h5"
-        color="inherit"
-        align="center"
+        component='h2'
+        variant='h5'
+        color='inherit'
+        align='center'
         noWrap
-        sx={{ flex: 1 }}
+        sx={{
+          flex: 1,
+          display: { xs: 'block', sm: 'none' }
+        }}
       >
-        {website?.name || null}
+        {website?.name}
       </Typography>
-      <IconButton>
-        <SearchIcon />
-      </IconButton>
-      <Button variant="outlined" size="small">
-        Sign up
-      </Button>
+      {website?.telegram
+        ? <IconButton onClick={handleOnClick} sx={{ ml: 'auto', mr: 0 }}>
+            <TelegramIcon color='primary' />
+          </IconButton>
+        : null
+      }
     </Toolbar>
   );
 }
