@@ -13,7 +13,7 @@ type TWebsite = {
 };
 
 type TWebsiteProvider = {
-  children: React.ReactNode
+  children: React.ReactNode;
 };
 
 interface IWebsiteContext {
@@ -41,7 +41,7 @@ const WebsiteContext = createContext<IWebsiteContext>(
  * Provides website context
  */
 function WebsiteProvider({ children }: TWebsiteProvider ) {
-  const [ website, setWebsite ] = useState<TWebsite>();
+  const [website, setWebsite] = useState<TWebsite>();
 
   return (
     <WebsiteContext.Provider value={{ website, setWebsite }}>

@@ -3,6 +3,7 @@ import { ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '../themes/defaultTheme';
 import { WebsiteProvider } from './WebsiteContext';
+import { ErrorProvider } from './ErrorContext';
 
 interface AppProvidersProps {
   children: React.ReactNode
@@ -16,7 +17,9 @@ function AppProviders({ children }: AppProvidersProps) {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <WebsiteProvider>
+        <ErrorProvider>
         {children}
+        </ErrorProvider>
       </WebsiteProvider>
     </ThemeProvider>
   );
