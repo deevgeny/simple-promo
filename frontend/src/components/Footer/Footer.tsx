@@ -1,7 +1,7 @@
 import React from 'react';
+import useWebsiteContext from '../../hooks/useWebsiteContext';
 import { Box, Container, Typography } from '@mui/material';
 import Copyright from './Copyright';
-import useWebsiteContext from '../../hooks/useWebsiteContext';
 
 function Footer() {
   const { website } = useWebsiteContext();
@@ -16,8 +16,14 @@ function Footer() {
       }}
     >
       <Container maxWidth='sm'>
-        <Typography variant='body2' textAlign='center'>
+        <Typography variant='body2' textAlign='center' color='text.secondary'>
           {website?.slogan}
+        </Typography>
+        <Typography variant='body2' textAlign='center' color='text.secondary'>
+          {website?.address}
+        </Typography>
+        <Typography variant='body2' textAlign='center' color='text.secondary'>
+          {website?.phone}{' '}{website?.email} 
         </Typography>
         <Copyright />
       </Container>

@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import useWebsiteContext from '../../hooks/useWebsiteContext';
+import { api } from '../../services/api';
 import Appbar from './Appbar';
 // import Navbar from './Navbar';
 import Banner from './Banner';
-import { api } from '../../services/api';
-import useWebsiteContext from '../../hooks/useWebsiteContext';
 
 /**
  * Site header with appbar, navbar and banner. 
  */
 function Header() {
   const { setWebsite } = useWebsiteContext();
+  const location = useLocation();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -31,7 +33,7 @@ function Header() {
     <header>
       <Appbar />
       {/*<Navbar />*/}
-      <Banner />
+      {location.pathname === '/' ? <Banner /> : null}
     </header>
   );
 }

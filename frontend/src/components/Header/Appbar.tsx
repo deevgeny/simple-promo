@@ -2,9 +2,11 @@ import React from 'react';
 import {
   Toolbar,
   Typography,
-  IconButton
+  IconButton,
+  Stack
  } from '@mui/material';
  import TelegramIcon from '@mui/icons-material/Telegram';
+ import MailOutlineIcon from '@mui/icons-material/MailOutline';
  import useWebsiteContext from '../../hooks/useWebsiteContext';
 
 /**
@@ -13,8 +15,11 @@ import {
 function Appbar() {
   const { website } = useWebsiteContext();
 
-  const handleOnClick = () => {
-    // Replace to navigate() from React Router
+  const handleEmailClick = () => {
+    window.location.href = `mailto:${website?.email}`;
+  };
+
+  const handleTelegramClick = () => {
     window.open(website?.telegram, '_blank');
   };
 
@@ -33,12 +38,18 @@ function Appbar() {
       >
         {website?.name}
       </Typography>
-      {website?.telegram
-        ? <IconButton onClick={handleOnClick} sx={{ ml: 'auto', mr: 0 }}>
+      <Stack direction='row' spacing={0.5} ml='auto'>
+        {website?.email &&
+          <IconButton onClick={handleEmailClick}>
+            <MailOutlineIcon color='primary' />
+          </IconButton>
+        }
+        {website?.telegram &&
+          <IconButton onClick={handleTelegramClick}>
             <TelegramIcon color='primary' />
           </IconButton>
-        : null
-      }
+        }
+      </Stack>
     </Toolbar>
   );
 }

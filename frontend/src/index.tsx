@@ -7,6 +7,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import { BrowserRouter } from 'react-router-dom';
 import AppProviders from './context/AppProviders';
 
 
@@ -15,9 +16,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <AppProviders>
-      <App />
-    </AppProviders>
+      <AppProviders>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </AppProviders>
   </React.StrictMode>
 );
 

@@ -28,7 +28,7 @@ const website: TWebsite = {
   slogan: 'Simple promo web site',
   banner: null,
   email: '',
-  telegram: '',
+  telegram: '#',
   phone: null,
   address: ''
 };
