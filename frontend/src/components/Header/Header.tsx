@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import useWebsiteContext from '../../hooks/useWebsiteContext';
+import useErrorContext from '../../hooks/useErrorContext';
+import { ApiError } from '../../services/error';
 import { api } from '../../services/api';
 import Appbar from './Appbar';
 // import Navbar from './Navbar';
@@ -10,8 +12,9 @@ import Banner from './Banner';
  * Site header with appbar, navbar and banner. 
  */
 function Header() {
-  const { setWebsite } = useWebsiteContext();
   const location = useLocation();
+  const { setWebsite } = useWebsiteContext();
+  const { setError } = useErrorContext();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -20,7 +23,7 @@ function Header() {
       if (response?.data) {
         setWebsite(response.data);
       } else if (error) {
-        console.log(error)
+        setError(new ApiError(error));
       }
     };
 

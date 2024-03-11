@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import useErrorContext from '../../hooks/useErrorContext';
 import { 
   Button,
   Dialog,
@@ -9,27 +10,24 @@ import {
 } from '@mui/material';
 
 function ErrorDialog() {
-  // Дописать сервис, который будет брать аксиос ошибку парсить ее и
-  // выдавать сообщение, а если это не аксиос ошибка, то тогда будет выдавать
-  // то сообщение, которое передано в сервис
-  const [errorMessage, setErrorMessage] = useState<any | undefined>();
+  const { error, setError } = useErrorContext();
 
   const handleClose = () => {
-    setErrorMessage(undefined);
+    setError(undefined);
   };
 
   return (
     <Dialog
-      open={errorMessage ? true : false}
+      open={error ? true : false}
       aria-labelledby='alert-dialog-title'
       aria-describedby='alert-dialog-description'
     >
       <DialogTitle id='alert-dialog-title'>
-        {errorMessage?.title}
+        {error?.errorTitle}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id='alert-dialog-description'>
-          {errorMessage?.text}
+          {error?.errorText}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

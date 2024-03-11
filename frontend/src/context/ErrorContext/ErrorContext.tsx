@@ -1,16 +1,13 @@
 import React, { createContext, useState } from 'react';
-
-type TError = {
-  // Дописать код
-};
+import { ErrorInterface } from '../../services/error';
 
 type TErrorProvider = {
   children: React.ReactNode; 
 };
 
 interface IErrorContext {
-  error: TError | undefined;
-  setError: React.Dispatch<React.SetStateAction<TError | undefined>>;
+  error: ErrorInterface | undefined;
+  setError: React.Dispatch<React.SetStateAction<ErrorInterface | undefined>>;
 };
 
 const ErrorContext = createContext<IErrorContext>({} as IErrorContext);
@@ -19,7 +16,7 @@ const ErrorContext = createContext<IErrorContext>({} as IErrorContext);
  * Provides error context
  */
 function ErrorProvider({ children }: TErrorProvider) {
-  const [error, setError] = useState<TError>();
+  const [error, setError] = useState<ErrorInterface>();
   return (
     <ErrorContext.Provider value={{ error, setError }}>
       {children}
