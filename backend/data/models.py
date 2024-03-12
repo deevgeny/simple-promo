@@ -9,6 +9,11 @@ def banner_path(instance, filename):
     return f'website-images/banner.{filename.split(".")[-1]}'
 
 
+def item_picture_path(instance, filename):
+    """Return item picture path and filename."""
+    return f'item-images/item-id-{instance.id}.{filename.split(".")[-1]}'
+
+
 class WebSite(models.Model):
     """Web site data model."""
     url = models.URLField(
@@ -80,3 +85,73 @@ class WebSite(models.Model):
                          'edit the existing record.')}
             )
         super().save(*args, **kwargs)
+
+
+class Category(models.Model):
+    """Item category model."""
+    name = models.CharField(
+        verbose_name='name',
+        max_length=64,
+        help_text='item category name',
+        unique=True
+    )
+    description = models.CharField(
+        verbose_name='description',
+        max_length=256,
+        help_text='item category description',
+    )
+
+    class Meta:
+        ordering = ['id']
+        verbose_name_plural = 'categories'
+
+    def __str__(self):
+        return self.name
+
+
+class Item(models.Model):
+    """Item model."""
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.PROTECT,
+        related_name='items',
+        verbose_name='category'
+    )
+    name = models.CharField(
+        verbose_name='name',
+        max_length=64,
+        help_text='item name',
+        unique=True
+    )
+    description = models.CharField(
+        verbose_name='description',
+        max_length=256,
+        help_text='item description'
+    )
+    picture = models.ImageField(
+        verbose_name='picture',
+        upload_to=item_picture_path,
+        help_text='item picture'
+    )
+    price = models.DecimalField(
+        verbose_name='price',
+        max_digits=10,
+        decimal_places=2,
+        help_text='item price'
+    )
+    visible = models.BooleanField(
+        verbose_name='visible',
+        default=False,
+        help_text='make item visible to users'
+    )
+    featured = models.BooleanField(
+        verbose_name='featured',
+        default=False,
+        help_text='display item in featured'
+    )
+
+    class Meta:
+        ordering = ['id']
+
+    def __str__(self):
+        return f'{self.category} - {self.name}'
