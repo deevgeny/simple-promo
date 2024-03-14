@@ -1,15 +1,22 @@
-from rest_framework.decorators import api_view, permission_classes
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet
 
 from data.models import Item
 
 from .serializers import ItemSerializer
 
 
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def item_view(request):
-    items = Item.objects.all()
-    serializer = ItemSerializer(items, many=True)
-    return Response(serializer.data)
+class ItemViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    """Item model view set.
+
+    actions:
+    - list
+    - retrieve
+    """
+    queryset = Item.objects.filter(visible=True)
+    serializer_class = ItemSerializer
+    permission_classes = (AllowAny,)
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('category', 'featured')

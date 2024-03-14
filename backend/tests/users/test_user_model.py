@@ -129,7 +129,7 @@ def test_user_model_login_field():
     )
 
 
-def test_profile_photo_func():
+def test_profile_photo_function():
     # Arrange
     user = User()
     user.id = 1
@@ -142,7 +142,7 @@ def test_profile_photo_func():
     )
 
 
-def test_phone_validator_func():
+def test_phone_validator_function():
     correct_phone = '+7 (000) 000-00-00'
     try:
         phone_validator(correct_phone)

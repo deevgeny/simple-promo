@@ -138,6 +138,13 @@ def test_phone_field_validators():
                    MaxLengthValidator), 'MaxLengthValidator is missing'
 
 
+def test_model_str_method(website):
+    obj = website
+    assert obj.__str__() == obj.url, (
+        'Model.__str__() method returned incorrect value'
+    )
+
+
 def test_model_clean_fields_method(website):
     obj = WebSite(url='http://example.com', name='new name')
     error_value = ("{'url': ['Only one web site record is allowed. Please try "

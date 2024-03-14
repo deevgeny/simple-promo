@@ -11,7 +11,7 @@ def banner_path(instance, filename):
 
 def item_picture_path(instance, filename):
     """Return item picture path and filename."""
-    return f'item-images/item-id-{instance.id}.{filename.split(".")[-1]}'
+    return f'item-images/item-id-{instance.name}.{filename.split(".")[-1]}'
 
 
 class WebSite(models.Model):
@@ -92,13 +92,13 @@ class Category(models.Model):
     name = models.CharField(
         verbose_name='name',
         max_length=64,
-        help_text='item category name',
+        help_text='Item category name',
         unique=True
     )
     description = models.CharField(
         verbose_name='description',
         max_length=256,
-        help_text='item category description',
+        help_text='Item category description',
     )
 
     class Meta:
@@ -115,39 +115,40 @@ class Item(models.Model):
         Category,
         on_delete=models.PROTECT,
         related_name='items',
-        verbose_name='category'
+        verbose_name='category',
+        help_text='Select item category'
     )
     name = models.CharField(
         verbose_name='name',
         max_length=64,
-        help_text='item name',
+        help_text='Item name',
         unique=True
     )
     description = models.CharField(
         verbose_name='description',
         max_length=256,
-        help_text='item description'
+        help_text='Item description'
     )
     picture = models.ImageField(
         verbose_name='picture',
         upload_to=item_picture_path,
-        help_text='item picture'
+        help_text='Item picture'
     )
     price = models.DecimalField(
         verbose_name='price',
         max_digits=10,
         decimal_places=2,
-        help_text='item price'
+        help_text='Item price'
     )
     visible = models.BooleanField(
         verbose_name='visible',
         default=False,
-        help_text='make item visible to users'
+        help_text='Make item visible to users'
     )
     featured = models.BooleanField(
         verbose_name='featured',
         default=False,
-        help_text='display item in featured'
+        help_text='Display item in featured'
     )
 
     class Meta:
