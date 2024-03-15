@@ -126,8 +126,8 @@ def test_model_meta_class(attr, value):
     )
 
 
-def test_model_str_method(item):
-    obj = item
+def test_model_str_method(visible_item):
+    obj = visible_item
     value = f'{obj.category} - {obj.name}'
     assert obj.__str__() == value, (
         'Model.__str__() method returned incorrect value'
@@ -138,7 +138,7 @@ def test_item_picture_path_function():
     instance = Item()
     instance.name = 'new'
     filename = 'somename.jpg'
-    value = 'item-images/item-id-new.jpg'
+    value = 'item-images/new.jpg'
     assert item_picture_path(instance, filename) == value, (
         'Incorrect path and filename returned from item_picture_path()'
     )

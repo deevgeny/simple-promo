@@ -11,7 +11,7 @@ def banner_path(instance, filename):
 
 def item_picture_path(instance, filename):
     """Return item picture path and filename."""
-    return f'item-images/item-id-{instance.name}.{filename.split(".")[-1]}'
+    return f'item-images/{instance.name}.{filename.split(".")[-1]}'
 
 
 class WebSite(models.Model):

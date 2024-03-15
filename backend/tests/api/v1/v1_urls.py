@@ -8,3 +8,5 @@ VERSION = '/v1'
 
 
 WEBSITE = f'{PREFIX}{VERSION}/website'
+CATEGORIES = f'{PREFIX}{VERSION}/categories'
+ITEMS = f'{PREFIX}{VERSION}/items'
