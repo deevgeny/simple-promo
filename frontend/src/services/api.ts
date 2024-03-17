@@ -48,5 +48,17 @@ export const api = {
         signal: controller.signal
       },
       false
-  )},
+    )
+  },
+  getItems: (controller: AbortController, params?: TQueryParams) => {
+    return requestHandler(
+      {
+        method: 'get',
+        url: '/items',
+        params,
+        signal: controller.signal
+      },
+      false
+    )
+  },
 };

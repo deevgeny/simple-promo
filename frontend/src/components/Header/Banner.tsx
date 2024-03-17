@@ -8,7 +8,8 @@ import {
  import useWebsiteContext from '../../hooks/useWebsiteContext';
 
 const { REACT_APP_API_URL: API_URL } = process.env;
-const defaultImage = 'https://source.unsplash.com/random?wallpapers';
+// const defaultImage = 'https://source.unsplash.com/random?wallpapers';
+const defaultImage = '#';
 
 function Banner() {
   const { website } = useWebsiteContext();
