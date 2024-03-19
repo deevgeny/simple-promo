@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import useErrorContext from '../../hooks/useErrorContext';
-import { api } from '../../services/api';
+import { api, TQueryParams } from '../../services/api';
 import { ApiError } from '../../services/error';
 import { 
   FormControl,
@@ -19,17 +19,25 @@ type TState = {
   categoryFilter: string;
   categories?: TCategory[];
   items?: TItem[];
-  previous: string | null;
   next: string | null;
+  previous: string | null;
+};
+
+type TNewState = {
+  categoryFilter?: string;
+  categories?: TCategory[];
+  items?: TItem[];
+  next?: string | null;
+  previous?: string | null;
 };
 
 const initialState: TState = {
   categoryFilter: '',
-  previous: null,
-  next: null
+  next: null,
+  previous: null
 };
 
-const reducer = (state: TState, action: {type: string; state?: {}}) => {
+const reducer = (state: TState, action: {type: string; state?: TNewState}) => {
   switch(action.type) {
     case 'reset':
       return initialState;
@@ -77,15 +85,36 @@ function Items() {
   }, []);
 
   useEffect(() => {
-    // Update category filter state if search params change 
-    if ((searchParams.get('category') || '') !== state.categoryFilter) {
-      dispatch({
-        type: 'update',
-        state: {
-          categoryFilter: searchParams.get('category') || ''
-        }
-      });
-    }
+    // Update category filter state (dropdown field) and request filtered itmes 
+    dispatch({
+      type: 'update',
+      state: {
+        categoryFilter: searchParams.get('category') || ''
+      }
+    });
+    
+    const getItems = async () => {
+      let params: TQueryParams | undefined;
+      if (searchParams.size) {
+        params = Object.fromEntries(searchParams.entries());
+      }
+      const { response, error } = await api.getItems(controller, params);
+      if (response?.data) {
+        dispatch({
+          type: 'update',
+          state: {
+            items: response.data?.results,
+            next: response.data?.next,
+            previous: response.data?.previous
+          }
+        });
+      } else if (error) {
+        setError(new ApiError(error));
+      }
+    };
+
+    getItems();
+
     // eslint-disable-next-line
   }, [searchParams]);
 
@@ -102,7 +131,7 @@ function Items() {
           label='Категория'
         >
           <MenuItem key={0} value=''>
-            Очистить фильтр
+            Все
           </MenuItem>
           {state?.categories?.map((category, index) => (
             <MenuItem

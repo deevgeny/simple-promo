@@ -19,7 +19,7 @@ function RouterBreadcrumbs() {
   const pathnames = location.pathname.split('/').filter((x) => x);
   
   return (
-    <Stack mx={8} my={1} >
+    <Stack mb={3} >
       <Breadcrumbs aria-label='breadcrumb'>
         <Link
           underline='hover'
