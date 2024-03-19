@@ -41,14 +41,24 @@ export const requestHandler = async (
 
 export const api = {
   getWebsite: (controller: AbortController) => {
-    return requestHandler( 
-      { 
+    return requestHandler(
+      {
         method: 'get',
         url: '/website',
         signal: controller.signal
       },
       false
-    )
+    );
+  },
+  getCategories: (controller: AbortController) => {
+    return requestHandler(
+      {
+        method: 'get',
+        url: '/categories',
+        signal: controller.signal
+      },
+      false
+    );
   },
   getItems: (controller: AbortController, params?: TQueryParams) => {
     return requestHandler(
@@ -59,6 +69,6 @@ export const api = {
         signal: controller.signal
       },
       false
-    )
+    );
   },
 };

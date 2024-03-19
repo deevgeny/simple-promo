@@ -7,14 +7,13 @@ import {
   Typography
  } from '@mui/material';
 
-
- type TCategory = {
+export type TCategory = {
   id: number;
   name: string;
   description: string;
 };
 
-export type TFeaturedItem = {
+export type TItem = {
   id: number;
   name: string;
   description: string;
@@ -26,7 +25,7 @@ export type TFeaturedItem = {
 };
 
 interface IFeaturedItemProps {
-  item: TFeaturedItem;
+  item: TItem;
 };
 
 function FeaturedItemCard(props: IFeaturedItemProps) {
@@ -55,9 +54,6 @@ function FeaturedItemCard(props: IFeaturedItemProps) {
           </Typography>
           <Typography variant='subtitle1' paragraph>
             {item.price} {'\u20BD'}
-          </Typography>
-          <Typography variant='subtitle1' color='primary'>
-            Подробнее...
           </Typography>
         </CardContent>
       </Card>

@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './pages/Home';
 import { useRoutes } from 'react-router-dom';
 import FeaturedItems from './components/FeaturedItems';
+import Items from './pages/Items';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
       element: <Home />,
       children: [
         { index: true, element: <FeaturedItems /> },
-        { path: 'new', element: <FeaturedItems /> }
+        { path: 'items', element: <Items /> }
       ]
     },
     {

@@ -7,6 +7,7 @@ import { api } from '../../services/api';
 import Appbar from './Appbar';
 // import Navbar from './Navbar';
 import Banner from './Banner';
+import RouterBreadcrumbs from './RouterBreadcrumbs';
 
 /**
  * Site header with appbar, navbar and banner. 
@@ -36,7 +37,7 @@ function Header() {
     <header>
       <Appbar />
       {/*<Navbar />*/}
-      {location.pathname === '/' ? <Banner /> : null}
+      {location.pathname === '/' ? <Banner /> : <RouterBreadcrumbs />}
     </header>
   );
 }

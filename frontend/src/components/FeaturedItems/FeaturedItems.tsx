@@ -3,11 +3,11 @@ import useErrorContext from '../../hooks/useErrorContext';
 import { api } from '../../services/api';
 import { ApiError } from '../../services/error';
 import { Grid } from '@mui/material';
-import FeaturedItemCard, { TFeaturedItem } from './FeaturedItemCard';
+import FeaturedItemCard, { TItem } from './FeaturedItemCard';
 
 
 function FeaturedItems() {
-  const [featuredItems, setFeaturedItems] = useState<TFeaturedItem[]>();
+  const [featuredItems, setFeaturedItems] = useState<TItem[]>();
   const { setError } = useErrorContext();
 
   useEffect(() => {
@@ -15,13 +15,8 @@ function FeaturedItems() {
     const getData = async () => {
       const params = { featured: true };
       const { response, error } = await api.getItems(controller, params);
-      console.log('run')
-      console.log(response)
-      console.log(error)
       if (response?.data) {
-        console.log('run')
         setFeaturedItems(response.data.results);
-        console.log(response.data.results)
       } else if (error) {
         setError(new ApiError(error));
       }
