@@ -3,7 +3,8 @@ import { useSearchParams } from 'react-router-dom';
 import useErrorContext from '../../hooks/useErrorContext';
 import { api, TQueryParams } from '../../services/api';
 import { ApiError } from '../../services/error';
-import { 
+import {
+  Grid, 
   FormControl,
   InputLabel,
   Select,
@@ -14,6 +15,8 @@ import {
   TCategory,
   TItem 
 } from '../../components/FeaturedItems/FeaturedItemCard';
+import ItemCard from './ItemCard';
+import Paginator from '../../components/Paginator';
 
 type TState = {
   categoryFilter: string;
@@ -85,7 +88,7 @@ function Items() {
   }, []);
 
   useEffect(() => {
-    // Update category filter state (dropdown field) and request filtered itmes 
+    // Update category filter state (dropdown field) and make request 
     dispatch({
       type: 'update',
       state: {
@@ -120,7 +123,7 @@ function Items() {
 
   return (
     <>
-      <FormControl size='small' sx={{ minWidth: 150, mb: 2 }}>
+      <FormControl size='small' sx={{ minWidth: 150, mb: 3 }}>
         <InputLabel id='category-filter-label'>Категория</InputLabel>
         <Select
           labelId='category-filter-label'
@@ -143,6 +146,14 @@ function Items() {
           }
         </Select>
       </FormControl>
+      <Grid container spacing={4}>
+        {state.items?.map((item, index) => (
+          <Grid item xs={12} sm={6} md={4} key={item.id}>
+            <ItemCard item={item}/>
+          </Grid>
+        ))}
+      </Grid>
+      <Paginator previous={state.previous} next={state.next} />
     </>
    
   );
