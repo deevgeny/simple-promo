@@ -95,7 +95,7 @@ function Items() {
         categoryFilter: searchParams.get('category') || ''
       }
     });
-    
+
     const getItems = async () => {
       let params: TQueryParams | undefined;
       if (searchParams.size) {
@@ -129,7 +129,8 @@ function Items() {
           labelId='category-filter-label'
           id='category-filter'
           name='category-filter'
-          value={state.categoryFilter}
+          // MUI warning: out-of-range value
+          value={state.categories ? state.categoryFilter : ''}
           onChange={handleCategoryFilter}
           label='Категория'
         >
@@ -153,7 +154,10 @@ function Items() {
           </Grid>
         ))}
       </Grid>
-      <Paginator previous={state.previous} next={state.next} />
+      {state.items?.length
+        ? <Paginator previous={state.previous} next={state.next} />
+        : null // добавить нет данных
+      }
     </>
    
   );
