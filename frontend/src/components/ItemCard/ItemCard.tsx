@@ -10,12 +10,32 @@ import {
   Button,
   Backdrop,
  } from '@mui/material';
-import { TItem } from '../../components/FeaturedItems/FeaturedItemCard'; 
+
+export type TCategory = {
+  id: number;
+  name: string;
+  description: string;
+};
+
+export type TItem = {
+  id: number;
+  name: string;
+  description: string;
+  picture: string;
+  price: string;
+  visible: boolean;
+  featured: boolean;
+  category: TCategory;
+};
 
 interface IItemCardProps {
   item: TItem;
 };
 
+/**
+ * Card component to display item.
+ * @param props 
+ */
 function ItemCard(props: IItemCardProps) {
   const { item } = props;
   const [backdropOpen, setBackdropOpen] = useState(false);
@@ -50,7 +70,7 @@ function ItemCard(props: IItemCardProps) {
         </Box>
       </CardContent>
       <CardActions>
-        <Button size='small'>Заказать</Button>
+        <Button size='small'>Подробнее</Button>
       </CardActions>
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}

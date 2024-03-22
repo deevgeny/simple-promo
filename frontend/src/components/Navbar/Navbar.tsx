@@ -19,7 +19,7 @@ const sections = [
 ];
 
 /**
- * Navigation bar with page links
+ * Navigation bar with links for web page header.
  */
 function Navbar() {
 

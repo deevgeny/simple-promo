@@ -12,7 +12,7 @@ export const pathMap: { [key: string]: string } = {
 };
 
 /**
- * Breadcrumbs with react router dom links.
+ * Breadcrumbs with react router dom links for web page header.
  */
 function RouterBreadcrumbs() {
   const location = useLocation();

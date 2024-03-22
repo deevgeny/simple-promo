@@ -6,35 +6,23 @@ import {
   CardContent,
   Typography
  } from '@mui/material';
+ import { TItem } from '../ItemCard/ItemCard';
 
-export type TCategory = {
-  id: number;
-  name: string;
-  description: string;
-};
-
-export type TItem = {
-  id: number;
-  name: string;
-  description: string;
-  picture: string;
-  price: string;
-  visible: boolean;
-  featured: boolean;
-  category: TCategory;
-};
-
-interface IFeaturedItemProps {
+interface IFeaturedItemCardProps {
   item: TItem;
 };
 
-function FeaturedItemCard(props: IFeaturedItemProps) {
+/**
+ * Card component to display featured item.
+ * @param props 
+ */
+function FeaturedItemCard(props: IFeaturedItemCardProps) {
   const { item } = props;
 
   return (
     <CardActionArea
       component='a'
-      href={`${process.env.PUBLIC_URL}/items?category=${item.category.id}`}
+      href={`items?category=${item.category.id}`}
       >
       <Card sx={{ minHeight: 520 }}>
         <CardMedia

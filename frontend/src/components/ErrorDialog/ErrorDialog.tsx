@@ -9,6 +9,10 @@ import {
   DialogTitle
 } from '@mui/material';
 
+/**
+ * Error dialog component to display error to user.
+ * @returns 
+ */
 function ErrorDialog() {
   const { error, setError } = useErrorContext();
 

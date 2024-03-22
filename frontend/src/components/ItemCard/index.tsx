@@ -1,0 +1,1 @@
+export { default, type TCategory, type TItem } from './ItemCard';

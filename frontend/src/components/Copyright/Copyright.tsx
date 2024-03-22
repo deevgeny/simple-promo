@@ -2,6 +2,10 @@ import React from 'react';
 import { Typography, Link } from '@mui/material';
 import useWebsiteContext from '../../hooks/useWebsiteContext';
 
+/**
+ * Typography component with copyright text and link.
+ * @returns 
+ */
 function Copyright() {
   const { website } = useWebsiteContext();
 

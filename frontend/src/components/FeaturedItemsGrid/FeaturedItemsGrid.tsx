@@ -3,10 +3,13 @@ import useErrorContext from '../../hooks/useErrorContext';
 import { api } from '../../services/api';
 import { ApiError } from '../../services/error';
 import { Grid } from '@mui/material';
-import FeaturedItemCard, { TItem } from './FeaturedItemCard';
+import FeaturedItemCard from '../FeaturedItemCard';
+import { TItem } from '../ItemCard/ItemCard';
 
-
-function FeaturedItems() {
+/**
+ * Grid component with featured items cards.
+ */
+function FeaturedItemsGrid() {
   const [featuredItems, setFeaturedItems] = useState<TItem[]>();
   const { setError } = useErrorContext();
 
@@ -38,4 +41,4 @@ function FeaturedItems() {
   );
 }
 
-export default FeaturedItems;
+export default FeaturedItemsGrid;

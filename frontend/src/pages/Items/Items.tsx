@@ -11,11 +11,8 @@ import {
   MenuItem,
   SelectChangeEvent,
  } from '@mui/material';
- import {
-  TCategory,
-  TItem 
-} from '../../components/FeaturedItems/FeaturedItemCard';
-import ItemCard from './ItemCard';
+ import ItemCard, { TCategory, TItem } from '../../components/ItemCard';
+import NoData from '../../components/NoData';
 import Paginator from '../../components/Paginator';
 
 type TState = {
@@ -51,6 +48,9 @@ const reducer = (state: TState, action: {type: string; state?: TNewState}) => {
   }
 };
 
+/**
+ * Items page.
+ */
 function Items() {
   const controller = new AbortController();
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -156,7 +156,7 @@ function Items() {
       </Grid>
       {state.items?.length
         ? <Paginator previous={state.previous} next={state.next} />
-        : null // добавить нет данных
+        : <NoData />
       }
     </>
    

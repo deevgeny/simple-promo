@@ -1,8 +1,11 @@
 import React from 'react';
 import useWebsiteContext from '../../hooks/useWebsiteContext';
 import { Box, Container, Typography } from '@mui/material';
-import Copyright from './Copyright';
+import Copyright from '../Copyright';
 
+/**
+ * Page footer component.
+ */
 function Footer() {
   const { website } = useWebsiteContext();
 

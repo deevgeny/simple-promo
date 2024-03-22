@@ -10,7 +10,7 @@ import {
  import useWebsiteContext from '../../hooks/useWebsiteContext';
 
 /**
- * Appbar with site name and buttons.
+
  */
 function Appbar() {
   const { website } = useWebsiteContext();

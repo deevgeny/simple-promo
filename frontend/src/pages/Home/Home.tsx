@@ -5,7 +5,9 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ErrorDialog from '../../components/ErrorDialog';
 
-
+/**
+ * Home page with header, outlet, footer and error dialog.
+ */
 function Home() {
   return (
     <Container

@@ -4,13 +4,13 @@ import useWebsiteContext from '../../hooks/useWebsiteContext';
 import useErrorContext from '../../hooks/useErrorContext';
 import { ApiError } from '../../services/error';
 import { api } from '../../services/api';
-import Appbar from './Appbar';
-// import Navbar from './Navbar';
-import Banner from './Banner';
-import RouterBreadcrumbs from './RouterBreadcrumbs';
+import Appbar from '../Appbar';
+import Banner from '../Banner';
+//import Navbar from '../Navbar';
+import RouterBreadcrumbs from '../RouterBreadcrumbs';
 
 /**
- * Site header with appbar, navbar and banner. 
+ * Page header component. 
  */
 function Header() {
   const location = useLocation();

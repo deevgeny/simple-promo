@@ -11,6 +11,9 @@ const { REACT_APP_API_URL: API_URL } = process.env;
 // const defaultImage = 'https://source.unsplash.com/random?wallpapers';
 const defaultImage = '#';
 
+/**
+ * Banner component with image for web page header.
+ */
 function Banner() {
   const { website } = useWebsiteContext();
 
