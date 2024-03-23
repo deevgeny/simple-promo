@@ -10,6 +10,6 @@ from .serializers import CategorySerializer
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def category_view(request):
-    categories = Category.objects.all()
+    categories = Category.objects.prefetch_related('items').all()
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)

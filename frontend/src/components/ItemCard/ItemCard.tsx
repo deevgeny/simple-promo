@@ -46,30 +46,38 @@ function ItemCard(props: IItemCardProps) {
       <CardActionArea onClick={() => setBackdropOpen(true)}>
         <CardMedia
           component='img'
-          sx={{ height: 300 }}
+          height={300}
           image={item.picture}
           alt={item.name}
         />
       </CardActionArea>
       <CardContent sx={{ flex: 1 }}>
-        <Box>
-          <Typography component='h2' variant='h5'>
-            {item.category.name}
-          </Typography>
-          <Typography variant='body1'>
-            {item.name}
-          </Typography>
-          <Typography variant='body1' color='text.secondary' mt={1}>
-            {item.description}
-          </Typography>
-        </Box>
-        <Box>
-          <Typography variant='body1'>
-            {item.price} {'\u20BD'}
-          </Typography>
-        </Box>
+        <Typography component='h2' variant='h5'>
+          {item.category.name}
+        </Typography>
+        <Typography
+          variant='body1'
+          overflow='hidden'
+          textOverflow='ellipsis'
+          whiteSpace='nowrap'
+        >
+          {item.name}
+        </Typography>
+        <Typography
+          variant='body1'
+          my={1}
+          color='text.secondary'
+          overflow='hidden'
+          textOverflow='ellipsis'
+          whiteSpace='nowrap'
+        >
+          {item.description}
+        </Typography>
+        <Typography variant='body1'>
+          {item.price} {'\u20BD'}
+        </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ justifyContent: 'flex-end'}}>
         <Button size='small'>Подробнее</Button>
       </CardActions>
       <Backdrop

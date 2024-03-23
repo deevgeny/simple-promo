@@ -13,7 +13,7 @@ class ItemSerializer(serializers.ModelSerializer):
         model = Item
         fields = ('id', 'name', 'description', 'picture', 'price', 'visible',
                   'featured', 'category')
-    
+
     # def get_picture(self, obj):
     #    """Remove host name from url."""
     #    if obj.picture:

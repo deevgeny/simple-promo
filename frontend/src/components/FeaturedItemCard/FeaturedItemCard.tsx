@@ -23,13 +23,12 @@ function FeaturedItemCard(props: IFeaturedItemCardProps) {
     <CardActionArea
       component='a'
       href={`items?category=${item.category.id}`}
+      sx={{ height: '100%'}}
       >
-      <Card sx={{ minHeight: 520 }}>
+      <Card sx={{ height: '100%'}}>
         <CardMedia
           component='img'
-          //className='img-scale-down'
-          //sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
-          sx={{ height: 300 }}
+          height={300}
           image={item.picture}
           alt={item.category.name}
         />
@@ -37,10 +36,13 @@ function FeaturedItemCard(props: IFeaturedItemCardProps) {
           <Typography component='h2' variant='h5'>
             {item.category.name}
           </Typography>
-          <Typography variant='subtitle1' paragraph>
-            {item.description}
+          <Typography
+            mb={1}
+          >
+            {item.category.description}
           </Typography>
-          <Typography variant='subtitle1' paragraph>
+          <Typography
+          >
             {item.price} {'\u20BD'}
           </Typography>
         </CardContent>
