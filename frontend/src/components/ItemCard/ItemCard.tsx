@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Card,
   CardActionArea,
@@ -39,7 +40,7 @@ interface IItemCardProps {
 function ItemCard(props: IItemCardProps) {
   const { item } = props;
   const [backdropOpen, setBackdropOpen] = useState(false);
-  console.log(window.innerWidth)
+  const navigate = useNavigate();
 
   return (
     <Card sx={{ height: 500 }}>
@@ -73,12 +74,17 @@ function ItemCard(props: IItemCardProps) {
         >
           {item.description}
         </Typography>
-        <Typography variant='body1'>
+        <Typography>
           {item.price} {'\u20BD'}
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: 'flex-end'}}>
-        <Button size='small'>Подробнее</Button>
+        <Button
+          size='small'
+          onClick={() => navigate(`${item.id}`)}
+        >
+          Подробнее
+        </Button>
       </CardActions>
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -91,7 +97,7 @@ function ItemCard(props: IItemCardProps) {
           alt={item.name}
           loading='lazy'
           sx={{
-            maxWidth: {xs: window.innerWidth, sm: 600},
+            maxWidth: { xs: window.innerWidth, sm: 600 },
             my: 'auto',
             p: 6,
             borderRadius: 15

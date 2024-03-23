@@ -10,7 +10,7 @@ function NotFound() {
     <Stack alignItems='center' spacing={3} my={6}>
       <img
         className='img-scale-down'
-        src={`images/page-not-found.svg`}
+        src={`${process.env.PUBLIC_URL}/images/page-not-found.svg`}
         alt='page not found'
         loading='lazy'
       />

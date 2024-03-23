@@ -15,7 +15,7 @@ export type TQueryParams = {
  * @param auth - authenticated/unauthenticated request boolean flag   
  * @returns axiosResponse | axiosError | undefined
  */
-export const requestHandler = async (
+const requestHandler = async (
   config: AxiosRequestConfig,
   auth: boolean = true
 ) => {
@@ -71,4 +71,14 @@ export const api = {
       false
     );
   },
+  getItem: (controller: AbortController, id: string | undefined) => {
+    return requestHandler(
+      {
+        method: 'get',
+        url: `/items/${id}`,
+        signal: controller.signal
+      },
+      false
+    );
+  }
 };
