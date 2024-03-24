@@ -6,9 +6,9 @@ import Footer from '../../components/Footer';
 import ErrorDialog from '../../components/ErrorDialog';
 
 /**
- * Home page with header, outlet, footer and error dialog.
+ * Page layout with header, outlet, footer and error dialog.
  */
-function Home() {
+function Layout() {
   return (
     <Container
       sx={{
@@ -29,4 +29,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Layout;

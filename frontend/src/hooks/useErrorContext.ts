@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { ErrorContext } from '../context/ErrorContext';
 
 /**
- * Custom hook to provide error context.
+ * Custom hook to read and set error context.
  * 
  * returns { error, setError }
  */

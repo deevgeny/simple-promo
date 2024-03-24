@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { api } from '../../services/api';
 import useErrorContext from '../../hooks/useErrorContext';
+import useBreadcrumbsContext from '../../hooks/useBreadcrumbsContext';
 import { ApiError } from '../../services/error';
 import { TItem } from '../../components/ItemCard';
 import {
@@ -15,12 +16,14 @@ import BackButton from '../../components/BackButton';
 const StyledImg = styled(Box)<{src: string | undefined}>(({ theme, src }) => ({
   objectFit: 'cover',
   objectPosition: 'center',
+borderRadius: 6
 }));
 
 function ItemDetails() {
   const [item, setItem] = useState<TItem>(); 
   const { itemId } = useParams();
   const { setError } = useErrorContext();
+  const { setEnd } = useBreadcrumbsContext();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -28,6 +31,10 @@ function ItemDetails() {
       const { response, error } = await api.getItem(controller, itemId);
       if (response?.data) {
         setItem(response.data);
+        setEnd((
+          `${response.data?.category?.name}
+          ${response.data?.name?.toLowerCase()}`
+        ));
       } else if (error) {
         setError(new ApiError(error));
       }

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link as LinkRouter, useLocation } from 'react-router-dom';
+import useBreadcrumbsContext from '../../hooks/useBreadcrumbsContext';
 import {
   Stack,
   Breadcrumbs,
   Link,
   Typography
 } from '@mui/material';
-import { Link as LinkRouter, useLocation } from 'react-router-dom';
 
 export const pathMap: { [key: string]: string } = {
   '/items': 'Просмотр',
@@ -16,10 +17,16 @@ export const pathMap: { [key: string]: string } = {
  */
 function RouterBreadcrumbs() {
   const location = useLocation();
+  const { end, setEnd } = useBreadcrumbsContext();
   const pathnames = location.pathname.split('/').filter((x) => x);
+
+  useEffect(() => {
+    setEnd(null);
+    // eslint-disable-next-line
+  }, [location]);
   
   return (
-    <Stack mb={3} >
+    <Stack mb={3}>
       <Breadcrumbs aria-label='breadcrumb'>
         <Link
           underline='hover'
@@ -38,7 +45,7 @@ function RouterBreadcrumbs() {
               color='inherit'
               key={to}
             >
-              {pathMap[to] || 'Неизвестная страница'}
+              {pathMap[to] || end || '...'}
             </Typography>
           ) : (
             <Link

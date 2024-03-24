@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import useWebsiteContext from '../../hooks/useWebsiteContext';
-import useErrorContext from '../../hooks/useErrorContext';
-import { ApiError } from '../../services/error';
+import useResponseError from '../../hooks/useResponseError';
 import { api } from '../../services/api';
 import Appbar from '../Appbar';
 import Banner from '../Banner';
@@ -14,8 +13,8 @@ import RouterBreadcrumbs from '../RouterBreadcrumbs';
  */
 function Header() {
   const location = useLocation();
+  const { setResponseError } = useResponseError();
   const { setWebsite } = useWebsiteContext();
-  const { setError } = useErrorContext();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -24,7 +23,7 @@ function Header() {
       if (response?.data) {
         setWebsite(response.data);
       } else if (error) {
-        setError(new ApiError(error));
+        setResponseError(error);
       }
     };
 

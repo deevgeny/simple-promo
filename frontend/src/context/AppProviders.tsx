@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from '../themes/defaultTheme';
 import { WebsiteProvider } from './WebsiteContext';
 import { ErrorProvider } from './ErrorContext';
+import { BreadcrumbsProvider } from './BreadcrumbsContext';
 
 interface AppProvidersProps {
   children: React.ReactNode
@@ -18,7 +19,9 @@ function AppProviders({ children }: AppProvidersProps) {
       <CssBaseline />
       <WebsiteProvider>
         <ErrorProvider>
-        {children}
+          <BreadcrumbsProvider>
+            {children}
+          </BreadcrumbsProvider>
         </ErrorProvider>
       </WebsiteProvider>
     </ThemeProvider>

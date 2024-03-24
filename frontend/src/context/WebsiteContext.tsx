@@ -9,7 +9,7 @@ type TWebsite = {
   email: string;
   telegram: string;
   phone: string | null;
-  address: string;
+  address: string | null;
 };
 
 type TWebsiteProvider = {

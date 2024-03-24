@@ -10,28 +10,38 @@ export type TQueryParams = {
 };
 
 /**
- * Makes axios requests, handles it and returns response or error.
+ * Makes unauthenticated requests, handles it and returns response or error.
  * @param config - axios config object
- * @param auth - authenticated/unauthenticated request boolean flag   
  * @returns axiosResponse | axiosError | undefined
  */
-const requestHandler = async (
-  config: AxiosRequestConfig,
-  auth: boolean = true
-) => {
+export const noAuthRequestHandler = async (config: AxiosRequestConfig) => {
   let response: AxiosResponse | undefined;
   let error: AxiosError | undefined;
   try {
-    if (auth) {
-      // Use axiosJWT instance to handle token refresh in interceptors
-      // response = await axiosJWT(config);
-      //return response;
-    } else {
-      // Use axiosGuest instance to skip token refresh for 401 errors
-      response = await axiosNoAuth(config);
-    }
+    // Use axiosNoAuth instance to make unauthenticated requests
+    response = await axiosNoAuth(config);
   } catch(err) {
-    // If condition to handle react strict mode
+    // Handle react strict mode
+    if (!config.signal?.aborted) {
+      error = err as AxiosError;
+    }
+  }
+  return { response, error };
+};
+
+/**
+ * Makes authenticated requests, handles it and returns response or error.
+ * @param config - axios config object
+ * @returns axiosResponse | axiosError | undefined
+ */
+export const authRequestHandler = async (config: AxiosRequestConfig) => {
+  let response: AxiosResponse | undefined;
+  let error: AxiosError | undefined;
+  try {
+    // Use axiosAuth instance to handle authentication headers
+    // response = await axiosAuth(config);
+  } catch(err) {
+    // Handle react strict mode
     if (!config.signal?.aborted) {
       error = err as AxiosError;
     }
@@ -41,44 +51,40 @@ const requestHandler = async (
 
 export const api = {
   getWebsite: (controller: AbortController) => {
-    return requestHandler(
+    return noAuthRequestHandler(
       {
         method: 'get',
         url: '/website',
         signal: controller.signal
       },
-      false
     );
   },
   getCategories: (controller: AbortController) => {
-    return requestHandler(
+    return noAuthRequestHandler(
       {
         method: 'get',
         url: '/categories',
         signal: controller.signal
       },
-      false
     );
   },
   getItems: (controller: AbortController, params?: TQueryParams) => {
-    return requestHandler(
+    return noAuthRequestHandler(
       {
         method: 'get',
         url: '/items',
         params,
         signal: controller.signal
       },
-      false
     );
   },
   getItem: (controller: AbortController, id: string | undefined) => {
-    return requestHandler(
+    return noAuthRequestHandler(
       {
         method: 'get',
         url: `/items/${id}`,
         signal: controller.signal
       },
-      false
     );
   }
 };

@@ -1,8 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import useErrorContext from '../../hooks/useErrorContext';
+import useResponseError from '../../hooks/useResponseError';
 import { api, TQueryParams } from '../../services/api';
-import { ApiError } from '../../services/error';
 import {
   Grid, 
   FormControl,
@@ -52,10 +51,9 @@ const reducer = (state: TState, action: {type: string; state?: TNewState}) => {
  * Items page.
  */
 function Items() {
-  const controller = new AbortController();
   const [state, dispatch] = useReducer(reducer, initialState);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { setError } = useErrorContext();
+  const { setResponseError } = useResponseError();
   
   const handleCategoryFilter = (event: SelectChangeEvent) => {
     // Update search params in url, similar to navigate()
@@ -68,6 +66,7 @@ function Items() {
 
   useEffect(() => {
     // Get list of categories and update state for dropdown category filter
+    const controller = new AbortController();
     const getCategories = async () => {
       const { response, error } = await api.getCategories(controller);
       if (response?.data) {
@@ -78,7 +77,7 @@ function Items() {
           }
         });
       } else if (error) {
-        setError(new ApiError(error));
+        setResponseError(error)
       }
     };
 
@@ -88,7 +87,8 @@ function Items() {
   }, []);
 
   useEffect(() => {
-    // Update category filter state (dropdown field) and make request 
+    // Update category filter state (dropdown field) and make filtered request 
+    const controller = new AbortController();
     dispatch({
       type: 'update',
       state: {
@@ -112,7 +112,7 @@ function Items() {
           }
         });
       } else if (error) {
-        setError(new ApiError(error));
+        setResponseError(error)
       }
     };
 
@@ -148,7 +148,7 @@ function Items() {
         </Select>
       </FormControl>
       <Grid container spacing={4}>
-        {state.items?.map((item, index) => (
+        {state.items?.map((item) => (
           <Grid item xs={12} sm={6} md={4} key={item.id}>
             <ItemCard item={item}/>
           </Grid>
@@ -159,7 +159,6 @@ function Items() {
         : <NoData />
       }
     </>
-   
   );
 }
 

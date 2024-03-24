@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import useErrorContext from '../../hooks/useErrorContext';
+import useResponseError from '../../hooks/useResponseError';
 import { api } from '../../services/api';
-import { ApiError } from '../../services/error';
 import { Grid } from '@mui/material';
 import FeaturedItemCard from '../FeaturedItemCard';
 import { TItem } from '../ItemCard/ItemCard';
@@ -11,7 +10,7 @@ import { TItem } from '../ItemCard/ItemCard';
  */
 function FeaturedItemsGrid() {
   const [featuredItems, setFeaturedItems] = useState<TItem[]>();
-  const { setError } = useErrorContext();
+  const { setResponseError } = useResponseError();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -21,7 +20,7 @@ function FeaturedItemsGrid() {
       if (response?.data) {
         setFeaturedItems(response.data.results);
       } else if (error) {
-        setError(new ApiError(error));
+        setResponseError(error);
       }
     };
 

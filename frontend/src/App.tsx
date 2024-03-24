@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './pages/Home';
+import Layout from './pages/Layout';
 import { useRoutes } from 'react-router-dom';
 import FeaturedItemsGrid from './components/FeaturedItemsGrid';
 import Items from './pages/Items';
@@ -10,7 +10,7 @@ function App() {
   const element = useRoutes([
     {
       path: '/',
-      element: <Home />,
+      element: <Layout />,
       children: [
         { index: true, element: <FeaturedItemsGrid /> },
         { path: 'items', element: <Items /> },

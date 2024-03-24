@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { ErrorInterface } from '../../services/error';
+import { ErrorInterface } from '../services/error';
 
 type TErrorProvider = {
   children: React.ReactNode; 
