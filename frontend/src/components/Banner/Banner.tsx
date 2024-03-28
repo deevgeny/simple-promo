@@ -19,6 +19,7 @@ function Banner() {
 
   return (
     <Paper
+      data-testid='banner'
       sx={{
         display: { xs: 'none', sm: 'block' },
         position: 'relative',
