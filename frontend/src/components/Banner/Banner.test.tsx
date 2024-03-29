@@ -18,6 +18,7 @@ const website = {
 describe('<Banner /> component', () => {
   test('renders correctly with default banner image', () => {
     const setWebsite = jest.fn();
+
     render(
       <WebsiteContext.Provider value={{ website, setWebsite }}>
         <Banner />
@@ -35,6 +36,7 @@ describe('<Banner /> component', () => {
     const setWebsite = jest.fn();
     const banner = '/media/12345.png';
     const custom_website = { ...website, banner };
+    
     render(
       <MemoryRouter>
         <Routes>
