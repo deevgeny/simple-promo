@@ -18,7 +18,6 @@ const website = {
 describe('<Copyright /> component', () => {
   test('renders correctly', () => {
     const setWebsite = jest.fn();
-
     render(
       <MemoryRouter>
         <Routes>
@@ -32,7 +31,6 @@ describe('<Copyright /> component', () => {
           />
         </Routes>
       </MemoryRouter>
-
     );
     expect(screen.getByText(/все права защищены ©/i)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /simple promo/i })).toBeInTheDocument();
@@ -43,7 +41,6 @@ describe('<Copyright /> component', () => {
   test('renders correctly without site name', () => {
     const setWebsite = jest.fn();
     const customWebsite = { ...website, name: '' };
-
     render(
       <WebsiteContext.Provider value={{ website: customWebsite, setWebsite }} >
         <Copyright />

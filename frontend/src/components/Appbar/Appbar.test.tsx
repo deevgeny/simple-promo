@@ -17,13 +17,11 @@ const website = {
 describe('<Appbar /> component', () => {
   test('renders correctly', () => {
     const setWebsite = jest.fn();
-
     render(
       <WebsiteContext.Provider value={{ website, setWebsite }} >
         <Appbar />
       </WebsiteContext.Provider>
     );
-
     expect(screen.getByRole('heading', { name: /simple promo/i })).toBeInTheDocument();
     expect(screen.getByTestId('MailOutlineIcon')).toBeInTheDocument();
     expect(screen.getByTestId('TelegramIcon')).toBeInTheDocument();
@@ -32,13 +30,11 @@ describe('<Appbar /> component', () => {
   test('renders correctly without site name', () => {
     const customWebsite = { ...website, name: '' };
     const setWebsite = jest.fn();
-
     render(
       <WebsiteContext.Provider value={{ website: customWebsite, setWebsite }} >
         <Appbar />
       </WebsiteContext.Provider>
     );
-
     expect(screen.queryByRole('heading')).toHaveTextContent('');
     expect(screen.getByTestId('MailOutlineIcon')).toBeInTheDocument();
     expect(screen.getByTestId('TelegramIcon')).toBeInTheDocument();
@@ -47,13 +43,11 @@ describe('<Appbar /> component', () => {
   test('renders correctly without email', () => {
     const customWebsite = { ...website, email: '' };
     const setWebsite = jest.fn();
-
     render(
       <WebsiteContext.Provider value={{ website: customWebsite, setWebsite }} >
         <Appbar />
       </WebsiteContext.Provider>
     );
-
     expect(screen.getByRole('heading', { name: /simple promo/i })).toBeInTheDocument();
     expect(screen.queryByTestId('MailOutlineIcon')).not.toBeInTheDocument();
     expect(screen.getByTestId('TelegramIcon')).toBeInTheDocument();
@@ -62,7 +56,6 @@ describe('<Appbar /> component', () => {
   test('renders correctly without telegram', () => {
     const customWebsite = { ...website, telegram: '' };
     const setWebsite = jest.fn();
-
     render(
       <WebsiteContext.Provider value={{ website: customWebsite, setWebsite }} >
         <Appbar />
