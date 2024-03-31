@@ -34,7 +34,7 @@ describe('<Copyright /> component', () => {
     );
     expect(screen.getByText(/все права защищены ©/i)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /simple promo/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /simple promo/i }).getAttribute('href')).toEqual('');
+    expect(screen.getByRole('link', { name: /simple promo/i })).toHaveAttribute('href', '');
     expect(screen.getByText(new RegExp(`${new Date().getFullYear()}`))).toBeInTheDocument();
   });
 

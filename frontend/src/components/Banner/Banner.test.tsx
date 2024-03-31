@@ -29,7 +29,7 @@ describe('<Banner /> component', () => {
     expect(screen.getByRole('heading', { name: /simple promo/i })).toBeInTheDocument();
     expect(screen.getByText(/simple promo web site/i )).toBeInTheDocument();
     expect(screen.getByAltText(/simple promo/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/simple promo/i).getAttribute('src')).toEqual('#');
+    expect(screen.getByAltText(/simple promo/i)).toHaveAttribute('src', '#');
   });
 
   test('renders correctly with backend banner image', () => {
@@ -52,7 +52,7 @@ describe('<Banner /> component', () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByAltText(/simple promo/i).getAttribute('src')).toEqual(`http://127.0.0.1:8000${banner}`);
+    expect(screen.getByAltText(/simple promo/i)).toHaveAttribute('src', `http://127.0.0.1:8000${banner}`);
   });
 
 });
