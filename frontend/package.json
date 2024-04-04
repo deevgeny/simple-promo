@@ -49,10 +49,20 @@
   "jest": {
     "transformIgnorePatterns": [
       "node_modules/(?!(axios)/)"
+    ],
+    "collectCoverageFrom": [
+      "src/**/**/*.{ts,tsx}",
+      "src/**/*.{ts,tsx}",
+      "!src/**/**/*.{types,stories,constants,test,spec}.{ts,tsx}",
+      "!src/**/*.{types,stories,constants,test,spec}.{ts,tsx}",
+      "!src/*.{ts,tsx}'",
+      "!src/**/index.{ts,tsx}",
+      "!src/themes/*"
     ]
   },
   "devDependencies": {
     "@testing-library/react": "^14.2.2",
-    "@testing-library/user-event": "^14.5.2"
+    "@testing-library/user-event": "^14.5.2",
+    "nock": "^13.5.4"
   }
 }

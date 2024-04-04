@@ -3,3 +3,18 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+import { cleanup } from '@testing-library/react';
+import { baseUrl } from './services/axios';
+
+export const testUtils = {
+  baseUrl,
+  responseHeaders: {
+    'Content-Type': 'application/json',
+    'access-control-allow-origin': '*',
+  }
+};
+
+
+(global as any).testUtils = testUtils;
+
+afterEach(cleanup);
