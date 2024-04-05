@@ -1,6 +1,7 @@
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import nock from 'nock';
 import AppProviders from '../../context/AppProviders';
+import { ErrorContext } from '../../context/ErrorContext';
 import FeaturedItemsGrid from './FeaturedItemsGrid';
 import { testUtils } from '../../setupTests';
 
@@ -88,6 +89,22 @@ describe('<FeaturedItemsGrid /> component', () => {
     await waitFor(() => expect(screen.getAllByRole('link')[0]).toHaveAttribute('href', 'items?category=1'));
     await waitFor(() => expect(screen.getAllByRole('link')[1]).toHaveAttribute('href', 'items?category=2'));
     await waitFor(() => expect(screen.getAllByRole('link')[2]).toHaveAttribute('href', 'items?category=3'));
+  });
+
+  test('renders correctly with 404 response error', async () => {
+    const error = undefined;
+    const setError = jest.fn();
+    nock(testUtils.baseUrl)
+    .defaultReplyHeaders(testUtils.responseHeaders)
+    .get('/items')
+    .query({ featured: true })
+    .reply(404);
+    render(
+      <ErrorContext.Provider value={{ error, setError }}>
+        <FeaturedItemsGrid />
+      </ErrorContext.Provider>
+    );
+    await waitFor(() => expect(setError).toBeCalled());
   });
 
 });

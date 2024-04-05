@@ -14,7 +14,6 @@ export const testUtils = {
   }
 };
 
-
 (global as any).testUtils = testUtils;
 
 afterEach(cleanup);
