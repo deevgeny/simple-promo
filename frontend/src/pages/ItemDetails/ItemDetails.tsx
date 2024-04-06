@@ -13,10 +13,15 @@ import {
 } from '@mui/material';
 import BackButton from '../../components/BackButton';
 
-const StyledImg = styled(Box)<{src: string | undefined}>(({ theme, src }) => ({
+type TStyledImg = {
+  src: string | undefined;
+  alt: string | undefined;
+};
+
+const StyledImg = styled(Box)<TStyledImg>(({ theme, src, alt }) => ({
   objectFit: 'cover',
   objectPosition: 'center',
-borderRadius: 6
+  borderRadius: 6
 }));
 
 function ItemDetails() {
@@ -53,6 +58,7 @@ function ItemDetails() {
             component='img'
             src={item?.picture}
             height={400}
+            alt={item?.name}
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6}>

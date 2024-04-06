@@ -1,6 +1,5 @@
 import { render, screen, waitFor, act } from '@testing-library/react';
 import { MemoryRouter, Routes, Route, Navigate } from 'react-router-dom';
-import AppProviders from '../../context/AppProviders';
 import NotFound from './NotFound';
 
 describe('<NotFound /> page', () => {
