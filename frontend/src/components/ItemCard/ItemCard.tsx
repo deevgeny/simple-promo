@@ -90,6 +90,7 @@ function ItemCard(props: IItemCardProps) {
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={backdropOpen}
         onClick={() => setBackdropOpen(false)}
+        data-testid='backdrop-image'
       >
         <Box
           component='img'

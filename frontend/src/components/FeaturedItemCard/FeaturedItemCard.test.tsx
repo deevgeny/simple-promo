@@ -17,7 +17,7 @@ const item = {
 };
 
 describe('<FeaturedItemCard /> component', () => {
-  test('renders correctrly', () => {
+  test('renders correctly', () => {
     render(<FeaturedItemCard item={item} />);
     expect(screen.getByRole('img', { name: /category/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /category/i })).toBeInTheDocument();

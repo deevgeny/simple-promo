@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import { MemoryRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { WebsiteContext } from '../../context/WebsiteContext';
 import { BreadcrumbsProvider } from '../../context/BreadcrumbsContext';
@@ -33,7 +33,6 @@ describe('<Header /> component', () => {
           />
         </Routes>
       </MemoryRouter>
-
     );
     // Appbar and banner headers
     expect(screen.getAllByRole('heading', { name: /simple promo/i })).toHaveLength(2);
@@ -82,12 +81,13 @@ describe('<Header /> component', () => {
     expect(screen.getByText(/\.\.\./i)).toBeInTheDocument();
   });
 
-  test('renders correctly with 200 api response', () => {
+  test('renders correctly with 200 api response', async () => {
 
   });
 
-  test('renders correctly with 404 api response', () => {
-
+  test('renders correctly with 404 api response', async () => {
+  
   });
+ 
 
 });
