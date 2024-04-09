@@ -43,7 +43,7 @@ function ItemCard(props: IItemCardProps) {
   const navigate = useNavigate();
 
   return (
-    <Card sx={{ height: 500 }}>
+    <Card sx={{ height: 500 }} data-testid='item-card'>
       <CardActionArea onClick={() => setBackdropOpen(true)}>
         <CardMedia
           component='img'

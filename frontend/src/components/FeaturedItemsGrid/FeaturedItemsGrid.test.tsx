@@ -6,25 +6,25 @@ import FeaturedItemsGrid from './FeaturedItemsGrid';
 import { testUtils } from '../../setupTests';
 
 const responseData = {
-    "count": 3,
-    "next": null,
-    "previous": null,
-    "results": [
-        {
-            "id": 1,
-            "name": "name 1",
-            "description": "description 1",
-            "picture": "http://127.0.0.1:8000/media/item-images/image-1.jpg",
-            "price": "2500.00",
-            "visible": true,
-            "featured": true,
-            "category": {
-                "id": 1,
-                "name": "category 1",
-                "description": "category description 1"
-            }
-        },
-        {
+  "count": 3,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+     "id": 1,
+        "name": "name 1",
+        "description": "description 1",
+        "picture": "http://127.0.0.1:8000/media/item-images/image-1.jpg",
+        "price": "2500.00",
+        "visible": true,
+        "featured": true,
+        "category": {
+          "id": 1,
+          "name": "category 1",
+          "description": "category description 1"
+        }
+    },
+    {
             "id": 2,
             "name": "name 2",
             "description": "description 2",
