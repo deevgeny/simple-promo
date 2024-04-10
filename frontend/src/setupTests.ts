@@ -5,6 +5,9 @@
 import '@testing-library/jest-dom';
 import { cleanup } from '@testing-library/react';
 import { baseUrl } from './services/axios';
+import nock from 'nock'; 
+nock.disableNetConnect();
+
 
 export const testUtils = {
   baseUrl,
