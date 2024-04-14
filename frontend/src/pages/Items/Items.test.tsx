@@ -111,10 +111,7 @@ describe('<Items /> page', () => {
         responseData.results[2].category,
       ])
       .get('/items')
-      .reply(200, { ...responseData })
-      .get('/items')
-      .query({ category: 1 })
-      .reply(200, { ...responseData, results: [responseData.results[0]]});
+      .reply(200, { ...responseData });
     render(
       <AppProviders>
         <MemoryRouter>
